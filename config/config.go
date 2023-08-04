@@ -1,9 +1,10 @@
 package config
 
 type WebConf struct {
-	Host  string
-	Port  string
-	Debug bool //是否开发
+	Host   string
+	Port   string
+	Debug  bool   //是否开发
+	Dbtype string //是否开发
 }
 
 type MysqlConf struct {
