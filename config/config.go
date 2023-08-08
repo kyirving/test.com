@@ -5,6 +5,7 @@ type WebConf struct {
 	Port   string
 	Debug  bool   //是否开发
 	Dbtype string //是否开发
+	Secret string //密钥配置
 }
 
 type MysqlConf struct {

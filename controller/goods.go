@@ -65,9 +65,21 @@ func (g *Goods) Index(c *gin.Context) {
 		query.Order("new_time desc")
 	}
 
+	var count int64
+	query.Count(&count)
+
 	props := []model.Props{}
 	query.Offset((queryParams.Page - 1) * queryParams.Pagesize).Limit(queryParams.Pagesize).Find(&props)
 
-	r.Output(e.RESP_SUCC, "", props)
+	data := map[string]interface{}{
+		"pageinfo": map[string]int{
+			"page":     queryParams.Page,
+			"pagesize": queryParams.Pagesize,
+			"total":    int(count),
+		},
+		"list": props,
+	}
+
+	r.Output(e.RESP_SUCC, "", data)
 	c.JSON(e.RESP_SUCC, r)
 }

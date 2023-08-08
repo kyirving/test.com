@@ -3,6 +3,8 @@ package routes
 import (
 	"net/http"
 
+	"test.com/middleware"
+
 	"test.com/controller"
 
 	"test.com/config"
@@ -39,6 +41,10 @@ func InitRouter() *gin.Engine {
 	})
 
 	router.GET("/goods/index", (&controller.Goods{}).Index)
+
+	router.Use(middleware.JwtAuth())
+
+	router.GET("/user/bind-account", (&controller.User{}).Bindaccount)
 
 	return router
 }

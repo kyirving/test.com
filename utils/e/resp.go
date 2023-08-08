@@ -2,7 +2,9 @@ package e
 
 const (
 	//成功
-	RESP_SUCC = 200
+	RESP_SUCC          = 200
+	RESP_TOKEN_MISSING = 201
+	RESP_TOKEN_INVALID = 202
 
 	//客户端错误
 	RESP_SIGNATURE_ERROR = 403
@@ -20,6 +22,8 @@ const (
 
 var respMap = map[int]string{
 	RESP_SUCC:            "success",
+	RESP_TOKEN_MISSING:   "Access-Token 不能为空",
+	RESP_TOKEN_INVALID:   "Access-Token 无效",
 	RESP_SIGNATURE_ERROR: "签名失败",
 	RESP_NOT_FOUND:       "数据不存在",
 	RESP_METHOD_ERR:      "请求方式错误",
